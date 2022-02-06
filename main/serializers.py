@@ -19,8 +19,7 @@ class CommentSerializer(serializers.ModelSerializer):
         To represent name of author instead of ID
         """
         representation = super().to_representation(instance)
-        request = self.context.get("request")
-        representation["author"] = request.user.username
+        representation["author"] = instance.author.username
         return representation
 
 
@@ -43,6 +42,5 @@ class PostSerializer(serializers.ModelSerializer):
         To represent name of author instead of ID
         """
         representation = super().to_representation(instance)
-        request = self.context.get("request")
-        representation["author"] = request.user.username
+        representation["author"] = instance.author.username
         return representation
