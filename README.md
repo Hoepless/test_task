@@ -39,7 +39,7 @@ pip3 install -r req.txt
 ```
 
 Create .env and .db.env files.
-[Example](.env.example) provided below
+[Example](.example.env)
 
 Provide migrations
 
