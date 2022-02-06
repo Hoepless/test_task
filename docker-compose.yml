@@ -5,8 +5,10 @@ services:
     container_name: apps
     build: .
     command: sh -c "
+      python3 manage.py makemigrations &&
       python3 manage.py migrate &&
       python3 manage.py collectstatic --no-input &&
+      python3 manage.py process_tasks &
       gunicorn news.wsgi:application --timeout=256 --workers=2 -b 0.0.0.0 -p 8000"
     volumes:
       - static_volume:/app/storage        

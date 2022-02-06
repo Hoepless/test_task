@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "main",
     # libs
     "rest_framework",
+    "background_task",
 ]
 
 MIDDLEWARE = [
@@ -118,3 +119,4 @@ STATICFILES_DIRS = (str(BASE_DIR / "static"),)
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+BACKGROUND_TASK_RUN_ASYNC = True
