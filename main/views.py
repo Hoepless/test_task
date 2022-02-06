@@ -17,6 +17,11 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['action'] = self.action
+        return context
+
     @action(detail=True, methods=["post"], url_path="upvote")
     def upvote(self, request, pk):
         get_object_or_404(self.queryset, pk=pk)

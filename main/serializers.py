@@ -41,6 +41,11 @@ class PostSerializer(serializers.ModelSerializer):
         """
         To represent name of author instead of ID
         """
+        action = self.context.get('action')
         representation = super().to_representation(instance)
         representation["author"] = instance.author.username
+        if action == 'retrieve':
+            representation['comments'] = CommentSerializer(instance.comments.all(), many=True).data
+        elif action == 'list':
+            representation['comments'] = instance.comments.count()
         return representation
